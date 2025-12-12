@@ -3,69 +3,381 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrainingPro | Αρχική</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Εκπαίδευση Σκύλων - Dog Training Pro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* --- ΓΕΝΙΚΑ STYLES --- */
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e67e22;
+            --light-bg: #f4f4f4;
+            --white: #ffffff;
+            --text-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .logo span { color: var(--accent-color); }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent-color); }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* --- CAROUSEL (SLIDER) --- */
+        .carousel {
+            position: relative;
+            height: 100vh; /* Πιάνει όλο το ύψος της οθόνης */
+            width: 100%;
+            overflow: hidden;
+            margin-top: 0; 
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active { opacity: 1; }
+
+        /* --- Η ΔΙΟΡΘΩΣΗ ΓΙΑ ΤΙΣ ΦΩΤΟΓΡΑΦΙΕΣ --- */
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Γεμίζει το πλαίσιο */
+            object-position: center top; /* Εστιάζει ψηλά (στα κεφάλια) για να μην κόβονται */
+        }
+
+        .slide-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--white);
+            background: rgba(0, 0, 0, 0.4); /* Ελαφρύ σκούρο φίλτρο για να διαβάζονται τα γράμματα */
+            padding: 2rem;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 700px;
+        }
+
+        .slide-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--white);
+            padding: 10px 25px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .btn:hover { background: #d35400; }
+
+        /* Βελάκια Slider */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 10;
+        }
+        .prev-btn { left: 10px; }
+        .next-btn { right: 10px; }
+
+        /* --- SECTION: ΉΞΕΡΕΣ ΟΤΙ --- */
+        .did-you-know-section {
+            padding: 80px 20px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 50px;
+            font-weight: 800;
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .fact-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            text-align: left;
+        }
+
+        .fact-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .fact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .fact-card h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .fact-card p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* --- ΥΠΟΛΟΙΠΑ SECTIONS (Ενδεικτικά) --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        /* --- RESPONSIVE MOBILE --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                background: var(--white);
+                width: 100%;
+                text-align: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 5px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            .slide-content h1 { font-size: 2rem; }
+        }
+    </style>
 </head>
 <body>
 
     <header>
-        <div class="navbar">
-            <a href="index.html" class="logo">🐕 TrainingPro</a>
-            <nav>
-                <ul>
-                    <li><a href="index.html" class="active">Αρχική</a></li>
-                    <li><a href="about.html">Η Μέθοδος</a></li>
-                    <li><a href="packages.html">Πακέτα</a></li>
-                    <li><a href="contact.html" class="cta-btn">Επικοινωνία</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav>
+            <div class="logo">Dog<span>Training</span></div>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Αρχική</a></li>
+                <li><a href="#about">Σχετικά</a></li>
+                <li><a href="#facts">Facts</a></li>
+                <li><a href="#contact">Επικοινωνία</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <div class="carousel">
-        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=1988&auto=format&fit=crop');">
-            <div class="carousel-caption">
-                <h1>Εκπαίδευση με Χαμόγελο</h1>
-                <p>Χτίζουμε σχέσεις εμπιστοσύνης.</p>
-            </div>
-        </div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1558929996-da64ba858215?q=80&w=2073&auto=format&fit=crop');">
-            <div class="carousel-caption">
-                <h1>Αρμονική Βόλτα</h1>
-                <p>Μαθαίνουμε να περπατάμε μαζί, χωρίς τράβηγμα.</p>
-            </div>
-        </div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1591946614720-90a587da4a36?q=80&w=1974&auto=format&fit=crop');">
-            <div class="carousel-caption">
-                <h1>Ξεκινήστε Σωστά</h1>
-                <p>Ειδικά προγράμματα για κουτάβια.</p>
-            </div>
-        </div>
-    </div>
+    <section class="carousel" id="home">
+        <button class="carousel-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-btn next-btn"><i class="fas fa-chevron-right"></i></button>
 
-    <div class="container" style="text-align: center;">
-        <h2>Καλώς ήρθατε στο TrainingPro</h2>
-        <p>Η φιλοσοφία μας βασίζεται στη θετική ενίσχυση. Ελάτε να γνωριστούμε και να βελτιώσουμε τη ζωή με τον σκύλο σας.</p>
-        <br>
-        <a href="packages.html" class="cta-btn" style="padding: 15px 30px; font-size: 1.2rem;">Δείτε τα Πακέτα μας</a>
-    </div>
+        <div class="slide active">
+            <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Σκύλος τρέχει">
+            <div class="slide-content">
+                <h1>Εκπαίδευση με Αγάπη</h1>
+                <p>Χτίζουμε σχέσεις εμπιστοσύνης ανάμεσα σε εσάς και τον σκύλο σας.</p>
+                <a href="#contact" class="btn">Ξεκινήστε Σήμερα</a>
+            </div>
+        </div>
 
-    <footer>
-        <p>&copy; 2023 TrainingPro. Θεσσαλονίκη & Αθήνα.</p>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Εκπαίδευση Σκύλου">
+            <div class="slide-content">
+                <h1>Θετική Επιβράβευση</h1>
+                <p>Σύγχρονες μέθοδοι εκπαίδευσης χωρίς βία και φωνές.</p>
+                <a href="#contact" class="btn">Μάθετε Περισσότερα</a>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1534361960057-19889db9621e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Χαρούμενος Σκύλος">
+            <div class="slide-content">
+                <h1>Λύση Προβλημάτων Συμπεριφοράς</h1>
+                <p>Από βασική υπακοή μέχρι διόρθωση δύσκολων συμπεριφορών.</p>
+                <a href="#contact" class="btn">Επικοινωνία</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="did-you-know-section" id="facts">
+        <div class="container">
+            <h2 class="section-title">🐾 Ήξερες ότι...;</h2>
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <div class="fact-icon"><i class="fas fa-fingerprint"></i></div>
+                    <h3>Μοναδικό Αποτύπωμα</h3>
+                    <p>Η μύτη του σκύλου είναι όπως το δακτυλικό αποτύπωμα του ανθρώπου! Δεν υπάρχουν δύο σκύλοι με την ίδια μύτη.</p>
+                </div>
+                
+                <div class="fact-card">
+                    <div class="fact-icon"><i class="fas fa-brain"></i></div>
+                    <h3>Ευφυΐα Νηπίου</h3>
+                    <p>Ένας μέσος σκύλος έχει τη νοημοσύνη ενός παιδιού 2 ετών. Μπορεί να μάθει πάνω από 150 λέξεις και χειρονομίες.</p>
+                </div>
+
+                <div class="fact-card">
+                    <div class="fact-icon"><i class="fas fa-dog"></i></div>
+                    <h3>Γλώσσα Σώματος</h3>
+                    <p>Το κούνημα της ουράς δεν σημαίνει πάντα χαρά. Αν είναι σφιγμένη και ψηλά, μπορεί να δείχνει ένταση.</p>
+                </div>
+
+                <div class="fact-card">
+                    <div class="fact-icon"><i class="fas fa-hourglass-half"></i></div>
+                    <h3>Αίσθηση Χρόνου</h3>
+                    <p>Οι σκύλοι καταλαβαίνουν τη διαφορά μεταξύ 1 και 5 ωρών. Ξέρουν πότε είναι ώρα για βόλτα χάρη στο βιολογικό τους ρολόι.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <p>&copy; 2024 Dog Training Pro. Όλα τα δικαιώματα κατοχυρωμένα.</p>
+        <p>Τηλέφωνο: 210 1234567 | Email: info@dogtraining.gr</p>
     </footer>
 
     <script>
-        let slides = document.querySelectorAll('.slide');
+        // --- Mobile Menu ---
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // --- Carousel Slider Logic ---
+        const slides = document.querySelectorAll('.slide');
+        const nextBtn = document.querySelector('.next-btn');
+        const prevBtn = document.querySelector('.prev-btn');
         let currentSlide = 0;
-        
-        function nextSlide() {
+        const slideIntervalTime = 5000; // 5 δευτερόλεπτα
+        let slideInterval;
+
+        const nextSlide = () => {
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
+        };
+
+        const prevSlide = () => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        };
+
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetInterval();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetInterval();
+        });
+
+        // Αυτόματη εναλλαγή
+        function startSlide() {
+            slideInterval = setInterval(nextSlide, slideIntervalTime);
         }
-        
-        setInterval(nextSlide, 5000); // Αλλαγή κάθε 5 δευτερόλεπτα
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startSlide();
+        }
+
+        startSlide(); // Ξεκινάει το slider
     </script>
 </body>
 </html>

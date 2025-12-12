@@ -3,425 +3,185 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TrainingPro | Εμπιστοσύνη & Εκπαίδευση Σκύλων</title>
+    <title>TrainingPro | Εκπαίδευση Σκύλων</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* ΒΑΣΙΚΑ ΧΡΩΜΑΤΑ (Εμπιστοσύνη & Φύση) */
+        /* ΒΑΣΙΚΕΣ ΡΥΘΜΙΣΕΙΣ & ΧΡΩΜΑΤΑ */
         :root {
-            --color-primary: #1E88E5; /* Σκούρο Μπλε */
-            --color-secondary: #43A047; /* Πράσινο */
-            --color-text: #333333;
-            --color-light-bg: #F4F6F8;
-            --color-white: #ffffff;
+            --primary: #1E88E5; /* Μπλε */
+            --secondary: #43A047; /* Πράσινο */
+            --dark: #333;
+            --light: #f4f4f4;
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            line-height: 1.6; 
+            color: var(--dark); 
         }
 
-        /* ΓΕΝΙΚΕΣ ΡΥΘΜΙΣΕΙΣ */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth; /* Ομαλό σκρολ όταν πατάς τα λινκ */
-        }
-
-        body {
-            font-family: 'Roboto', sans-serif;
-            color: var(--color-text);
-            line-height: 1.6;
-            background-color: var(--color-white);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px 0;
-        }
-
-        /* HEADER & NAVIGATION */
-        .main-header {
-            background-color: var(--color-white);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        /* HEADER */
+        header {
+            background: #fff;
+            padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 5%; /* Λίγο μικρότερο padding για να χωράει το λόγκο */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 100;
         }
 
-        /* --- ΝΕΟ CSS ΓΙΑ ΤΟ LOGO --- */
-        .logo-container {
-            display: flex;
-            align-items: center; /* Κεντράρει κάθετα το εικονίδιο με το κείμενο */
-            text-decoration: none; /* Αφαιρεί την υπογράμμιση */
-            color: var(--color-primary); /* Το χρώμα του κειμένου και του SVG */
-        }
-
-        /* Το εικονίδιο SVG */
-        .air-dog-icon {
-            height: 45px; /* Ρύθμιση μεγέθους του σκύλου */
-            width: auto;
-            margin-right: 12px; /* Απόσταση από το κείμενο */
-            fill: currentColor; /* ΣΗΜΑΝΤΙΚΟ: Κάνει το SVG να πάρει το χρώμα του κειμένου (μπλε) */
-        }
-
-        /* Το κείμενο "TrainingPro" */
-        .logo-text {
-            font-size: 1.5em;
-            font-weight: 700;
-            /* color: inherited from .logo-container */
-        }
-        /* --------------------------- */
-
-
-        .main-header ul {
-            list-style: none;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
             display: flex;
             align-items: center;
         }
 
-        .main-header li {
-            margin-left: 20px;
-        }
+        /* Το εικονίδιο ως emoji για σιγουριά */
+        .logo span { font-size: 1.8rem; margin-right: 10px; }
 
-        .main-header a.nav-link {
-            text-decoration: none;
-            color: var(--color-text);
-            padding: 5px 10px;
-            transition: color 0.3s;
-            font-weight: 500;
-        }
-
-        .main-header a.nav-link:hover {
-            color: var(--color-primary);
-        }
-
-        /* CTA BUTTONS */
-        .cta-button, .cta-primary, .cta-secondary {
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 700;
-            text-align: center;
-            transition: all 0.3s ease;
-            display: inline-block;
-            border: 2px solid transparent;
-        }
-
-        /* Κουμπί στο μενού */
-        .nav-cta {
-            background-color: var(--color-primary);
-            color: var(--color-white);
-            padding: 8px 15px;
-        }
-        .nav-cta:hover {
-             background-color: #1565C0;
-        }
-
-
-        .cta-primary {
-            background-color: var(--color-primary);
-            color: var(--color-white);
-            border-color: var(--color-primary);
-        }
-
-        .cta-primary:hover {
-            background-color: transparent;
-            color: var(--color-primary);
-        }
-
-        .cta-secondary {
-            background-color: var(--color-secondary);
-            color: var(--color-white);
-            border-color: var(--color-secondary);
-        }
-
-        .cta-secondary:hover {
-            background-color: transparent;
-            color: var(--color-secondary);
-        }
+        nav ul { list-style: none; display: flex; gap: 20px; }
+        nav a { text-decoration: none; color: var(--dark); font-weight: 500; }
+        nav a:hover { color: var(--primary); }
 
         /* HERO SECTION */
-        .hero-section {
-            background-color: var(--color-primary);
-            color: var(--color-white);
-            height: 70vh;
-            min-height: 500px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            /* Εδώ βάζετε την πραγματική εικόνα σας */
-            background-image: linear-gradient(rgba(30, 136, 229, 0.85), rgba(30, 136, 229, 0.85)), url('https://images.unsplash.com/photo-1548199973-03cce0fd870e?q=80&w=1951&auto=format&fit=crop&ixlib=rb-4.0.3');
+        .hero {
+            background: linear-gradient(rgba(30, 136, 229, 0.8), rgba(30, 136, 229, 0.8)), url('https://images.unsplash.com/photo-1548199973-03cce0fd870e?auto=format&fit=crop&w=1951&q=80');
             background-size: cover;
             background-position: center;
-            padding: 0 20px;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5em;
-            margin-bottom: 15px;
-            line-height: 1.2;
-        }
-
-        .hero-content p {
-            font-size: 1.3em;
-            margin-bottom: 35px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* CONTENT SECTIONS */
-        .content-section {
-            padding: 80px 5%;
-            text-align: center;
-        }
-
-        .light-bg {
-            background-color: var(--color-light-bg);
-        }
-
-        .section-title {
-            font-size: 2.5em;
-            color: var(--color-primary);
-            margin-bottom: 50px;
-            position: relative;
-            display: inline-block;
-        }
-        
-        /* Μια μικρή γραμμή κάτω από τους τίτλους */
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 60%;
-            height: 3px;
-            background-color: var(--color-secondary);
-            margin: 15px auto 0;
-            border-radius: 2px;
-        }
-
-
-        /* ABOUT LIST */
-        .about-list {
-            list-style: none;
-            text-align: left;
-            display: inline-block;
-            margin-top: 30px;
-            font-size: 1.1em;
-        }
-
-        .about-list li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .checkmark {
-            color: var(--color-secondary);
-            margin-right: 10px;
-            font-weight: bold;
-        }
-
-        /* ΠΑΚΕΤΑ */
-        .package-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 30px;
-        }
-
-        .package-card {
-            background-color: var(--color-white);
-            padding: 40px 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s, box-shadow 0.3s;
+            height: 60vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .package-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
-        }
-
-        .package-card h3 {
-            color: var(--color-primary);
-            font-size: 1.5em;
-            margin-bottom: 20px;
-        }
-        
-        .package-card p {
-            margin-bottom: 30px;
-            flex-grow: 1; /* Για να ευθυγραμμιστούν τα κουμπιά στο κάτω μέρος */
-        }
-
-        .package-card.featured {
-            border: 3px solid var(--color-secondary);
-            position: relative;
-        }
-        
-        /* Ετικέτα "Δημοφιλές" */
-        .featured::before {
-            content: 'Best Value';
-            position: absolute;
-            top: -15px;
-            right: 20px;
-            background-color: var(--color-secondary);
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: bold;
-        }
-
-
-        /* ΠΛΗΡΟΦΟΡΙΕΣ */
-        .info-grid {
-            display: flex;
-            flex-wrap: wrap;
             justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin-bottom: 20px; }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: var(--secondary);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn:hover { background: #2E7D32; }
+
+        /* SECTIONS */
+        section { padding: 60px 5%; }
+        .bg-light { background: var(--light); }
+        h2 { text-align: center; color: var(--primary); margin-bottom: 40px; }
+
+        /* GRID ΓΙΑ ΤΑ ΠΑΚΕΤΑ */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
 
-        .info-card {
-            background-color: var(--color-white);
+        .card {
+            background: white;
             padding: 30px;
-            border-left: 5px solid var(--color-secondary);
-            border-radius: 8px;
-            text-align: left;
-            flex: 1 1 300px; /* Responsive flex */
-            max-width: 500px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        .info-card h3 {
-            color: var(--color-primary);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .info-icon {
-            margin-right: 10px;
-            font-size: 1.2em;
-        }
-
-        /* ΦΟΡΜΑ ΕΠΙΚΟΙΝΩΝΙΑΣ */
-        .contact-section {
-            background-color: var(--color-primary);
-            color: var(--color-white);
-            padding: 80px 5%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             text-align: center;
         }
 
-        .contact-section .section-title {
-            color: var(--color-white);
-        }
-        .contact-section .section-title::after {
-             background-color: var(--color-secondary);
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 40px auto 0;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            font-family: inherit;
-        }
-
-        .contact-form button[type="submit"] {
-            cursor: pointer;
-            border: none;
-            background-color: var(--color-secondary);
-            color: var(--color-white);
-            padding: 15px;
-            font-size: 1.2em;
-            font-weight: 700;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-        }
-
-        .contact-form button[type="submit"]:hover {
-            background-color: #388E3C;
-        }
+        .card h3 { color: var(--primary); margin-bottom: 15px; }
 
         /* FOOTER */
         footer {
-            background-color: #222;
-            color: #aaa;
+            background: var(--dark);
+            color: white;
             text-align: center;
-            padding: 30px 5%;
-            font-size: 0.9em;
+            padding: 20px;
+            margin-top: auto;
         }
 
-        /* RESPONSIVENESS (Για κινητά) */
+        /* MOBILE MENU FIX */
         @media (max-width: 768px) {
-            .main-header {
-                flex-direction: column;
-                padding: 15px;
-            }
-            
-            /* Στο κινητό το logo πάει πάνω */
-            .logo-container {
-                margin-bottom: 15px;
-            }
-            
-            .main-header nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .main-header li {
-                margin: 5px 10px;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5em;
-            }
-            
-            .hero-section {
-                height: auto;
-                padding: 100px 20px;
-            }
-            
-            .section-title {
-                font-size: 2em;
-            }
+            header { flex-direction: column; gap: 10px; }
+            nav ul { font-size: 0.9rem; }
+            .hero h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <header class="main-header">
-        <a href="#home" class="logo-container">
-            <svg class="air-dog-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path d="M95.7,38.8c-1.9-2.8-5.2-4.5-8.5-4.9c-2.3-0.3-4.6,0.1-6.8,1c-1.5-2.8-4.2-5-7.4-5.9c-1.3-0.4-2.6-0.5-4-0.4
-	c-1.3-3.4-4.2-6.1-7.8-7.2c-1.6-0.5-3.2-0.6-4.9-0.5c-1.6-3.7-5-6.4-9-7.1c-1.6-0.3-3.3-0.2-5,0.2c-1.9-4.3-6-7.3-10.7-7.8
-	c-2-0.2-4,0-5.9,0.6C23.8,4.7,21.4,3,18.8,3c-1.3,0-2.5,0.4-3.6,1.1c-3,1.9-5.1,5.2-5.4,8.9c-0.1,1.3,0.2,2.6,0.7,3.8
-	c-2.7,2-4.7,5-5.3,8.4c-0.2,1.4-0.1,2.8,0.4,4.1c-2.6,2.4-4.4,5.7-4.8,9.3c-0.2,1.5,0,3.1,0.6,4.5c-2.5,2.8-4,6.3-4.1,10.1
-	c-0.1,1.9,0.3,3.8,1.1,5.5c-2.6,3.4-3.9,7.5-3.6,11.8c0.2,2.3,0.8,4.5,1.9,6.6c-2.9,4.1-4.1,9.1-3.3,14.1c0.4,2.8,1.5,5.4,3,7.8
-	c-3.2,5.2-4.2,11.4-2.7,17.5c0.8,3.2,2.3,6.2,4.4,8.7c2.5,3.1,5.9,5.4,9.7,6.7c3.8,1.3,7.9,1.4,11.8,0.4c3.9-1,7.4-3.2,10.1-6.2
-	c2.7,3.4,6.5,5.8,10.7,6.8c4.2,1,8.6,0.5,12.5-1.4c3.9-1.9,7-5.1,8.9-9c1.9,3.9,5,7.1,8.9,9c3.9,1.9,8.3,2.4,12.5,1.4
-	c4.2-1,7.9-3.4,10.7-6.8c2.7,3,6.2,5.2,10.1,6.2c3.9,1,7.9,0.9,11.8-0.4c3.8-1.3,7.3-3.6,9.7-6.7c2.1-2.6,3.6-5.5,4.4-8.7
-	c1.5-6.1,0.5-12.3-2.7-17.5c1.6-2.3,2.6-5,3-7.8c0.8-5-0.4-10-3.3-14.1c1.1-2,1.7-4.3,1.9-6.6c0.4-4.3-0.9-8.4-3.6-11.8
-	c0.8-1.7,1.2-3.6,1.1-5.5c-0.1-3.7-1.7-7.3-4.1-10.1c0.6-1.4,0.8-3,0.6-4.5C99.5,44.2,98,41.3,95.7,38.8z"/>
-            </svg>
-            <span class="
+    <header>
+        <a href="#" class="logo">
+            <span>🐕</span> TrainingPro
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#home">Αρχική</a></li>
+                <li><a href="#about">Μέθοδος</a></li>
+                <li><a href="#packages">Πακέτα</a></li>
+                <li><a href="#contact">Επικοινωνία</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>Εκπαίδευση με Σεβασμό & Αγάπη</h1>
+        <p>Χτίστε μια σχέση εμπιστοσύνης με τον σκύλο σας. Θετική εκπαίδευση χωρίς βία.</p>
+        <a href="#packages" class="btn">Δείτε τα Προγράμματα</a>
+    </section>
+
+    <section id="about">
+        <h2>Η Φιλοσοφία Μας</h2>
+        <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+            <p>Πιστεύουμε στη συνεργασία και όχι στην επιβολή. Η μέθοδός μας βασίζεται στην επιβράβευση της καλής συμπεριφοράς και στην κατανόηση των αναγκών του σκύλου σας.</p>
+        </div>
+    </section>
+
+    <section id="packages" class="bg-light">
+        <h2>Πακέτα Εκπαίδευσης</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>🐶 Βασική Υπακοή</h3>
+                <p>Μάθετε τις βασικές εντολές και βελτιώστε την επικοινωνία σας.</p>
+            </div>
+            <div class="card" style="border: 2px solid var(--secondary);">
+                <h3>🍼 Puppy Start</h3>
+                <p>Το ιδανικό ξεκίνημα για το κουτάβι σας. Κοινωνικοποίηση & τουαλέτα.</p>
+            </div>
+            <div class="card">
+                <h3>🧠 Συμπεριφορά</h3>
+                <p>Λύσεις για φοβίες, άγχος και ανεπιθύμητες συμπεριφορές.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Επικοινωνία</h2>
+        <p style="text-align: center;">Στείλτε μας μήνυμα για μια δωρεάν αξιολόγηση.</p>
+        <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST" style="max-width: 500px; margin: 30px auto; display: flex; flex-direction: column; gap: 15px;">
+            <input type="text" name="name" placeholder="Όνομα" style="padding: 10px;" required>
+            <input type="email" name="email" placeholder="Email" style="padding: 10px;" required>
+            <textarea name="message" placeholder="Το μήνυμά σας..." rows="5" style="padding: 10px;" required></textarea>
+            <button type="submit" class="btn" style="border: none; cursor: pointer;">Αποστολή</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 TrainingPro</p>
+    </footer>
+
+</body>
+</html>

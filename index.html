@@ -6,6 +6,57 @@
     <title>TrainingPro | Αρχική</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Στυλ για το section 'Ήξερες ότι' */
+        .did-you-know-section {
+            padding: 60px 20px;
+            background-color: #f9f9f9;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .did-you-know-section h2 {
+            font-size: 2.2rem;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .fact-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+
+        .fact-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .fact-card h3 {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .fact-card p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.5;
+        }
+    </style>
 </head>
 <body>
 
@@ -24,19 +75,19 @@
     </header>
 
     <div class="carousel">
-        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=1988&auto=format&fit=crop');">
+        <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=1988&auto=format&fit=crop'); background-position: center top;">
             <div class="carousel-caption">
                 <h1>Εκπαίδευση με Χαμόγελο</h1>
                 <p>Χτίζουμε σχέσεις εμπιστοσύνης.</p>
             </div>
         </div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1558929996-da64ba858215?q=80&w=2073&auto=format&fit=crop');">
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1558929996-da64ba858215?q=80&w=2073&auto=format&fit=crop'); background-position: center top;">
             <div class="carousel-caption">
                 <h1>Αρμονική Βόλτα</h1>
                 <p>Μαθαίνουμε να περπατάμε μαζί, χωρίς τράβηγμα.</p>
             </div>
         </div>
-        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1591946614720-90a587da4a36?q=80&w=1974&auto=format&fit=crop');">
+        <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1591946614720-90a587da4a36?q=80&w=1974&auto=format&fit=crop'); background-position: center top;">
             <div class="carousel-caption">
                 <h1>Ξεκινήστε Σωστά</h1>
                 <p>Ειδικά προγράμματα για κουτάβια.</p>
@@ -44,15 +95,44 @@
         </div>
     </div>
 
-    <div class="container" style="text-align: center;">
+    <div class="container" style="text-align: center; margin-top: 40px;">
         <h2>Καλώς ήρθατε στο TrainingPro</h2>
         <p>Η φιλοσοφία μας βασίζεται στη θετική ενίσχυση. Ελάτε να γνωριστούμε και να βελτιώσουμε τη ζωή με τον σκύλο σας.</p>
         <br>
         <a href="packages.html" class="cta-btn" style="padding: 15px 30px; font-size: 1.2rem;">Δείτε τα Πακέτα μας</a>
     </div>
 
+    <section class="did-you-know-section">
+        <h2>🐾 Ήξερες ότι...;</h2>
+        <div class="facts-grid">
+            <div class="fact-card">
+                <div class="fact-icon">👃</div>
+                <h3>Μοναδικό Αποτύπωμα</h3>
+                <p>Η μύτη του σκύλου είναι όπως το δακτυλικό αποτύπωμα του ανθρώπου! Δεν υπάρχουν δύο σκύλοι με την ίδια μύτη.</p>
+            </div>
+            
+            <div class="fact-card">
+                <div class="fact-icon">🧠</div>
+                <h3>Ευφυΐα Νηπίου</h3>
+                <p>Ένας μέσος σκύλος έχει τη νοημοσύνη ενός παιδιού 2 ετών. Μπορεί να μάθει πάνω από 150 λέξεις και χειρονομίες.</p>
+            </div>
+
+            <div class="fact-card">
+                <div class="fact-icon">🐕</div>
+                <h3>Γλώσσα Σώματος</h3>
+                <p>Το κούνημα της ουράς δεν σημαίνει πάντα χαρά. Αν είναι σφιγμένη και ψηλά, μπορεί να δείχνει ένταση.</p>
+            </div>
+
+            <div class="fact-card">
+                <div class="fact-icon">⏳</div>
+                <h3>Αίσθηση Χρόνου</h3>
+                <p>Οι σκύλοι καταλαβαίνουν τη διαφορά μεταξύ 1 και 5 ωρών. Ξέρουν πότε είναι ώρα για βόλτα χάρη στο βιολογικό τους ρολόι.</p>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        <p>&copy; 2023 TrainingPro. Θεσσαλονίκη & Αθήνα.</p>
+        <p>&copy; 2025 TrainingPro. Θεσσαλονίκη.</p>
     </footer>
 
     <script>

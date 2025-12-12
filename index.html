@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ο Εκπαιδευτής Σκύλων Σας | Εμπιστοσύνη & Εκπαίδευση</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ΒΑΣΙΚΑ ΧΡΩΜΑΤΑ (Εμπιστοσύνη & Φύση) */
+        :root {
+            --color-primary: #1E88E5; /* Σκούρο Μπλε (Εμπιστοσύνη, Σταθερότητα) */
+            --color-secondary: #43A047; /* Πράσινο (Φύση, Ηρεμία, Ισορροπία) */
+            --color-text: #333333;
+            --color-light-bg: #F4F6F8; /* Ανοιχτό Γκρι/Λευκό (Καθαριότητα) */
+            --color-white: #ffffff;
+        }
+
+        /* ΓΕΝΙΚΕΣ ΡΥΘΜΙΣΕΙΣ */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--color-text);
+            line-height: 1.6;
+            background-color: var(--color-white);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* HEADER & NAVIGATION */
+        .main-header {
+            background-color: var(--color-white);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .main-header ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .main-header li {
+            margin-left: 20px;
+        }
+
+        .main-header a {
+            text-decoration: none;
+            color: var(--color-text);
+            padding: 5px 10px;
+            transition: color 0.3s;
+        }
+
+        .main-header a:hover {
+            color: var(--color-primary);
+        }
+
+        /* CTA BUTTONS */
+        .cta-button, .cta-primary, .cta-secondary {
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 700;
+            text-align: center;
+            transition: background-color 0.3s, opacity 0.3s;
+            display: inline-block;
+        }
+
+        .cta-primary {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border: 2px solid var(--color-primary);
+        }
+
+        .cta-primary:hover {
+            background-color: #1565C0; /* Πιο σκούρο μπλε */
+        }
+
+        .cta-secondary {
+            background-color: var(--color-secondary);
+            color: var(--color-white);
+            border: 2px solid var(--color-secondary);
+        }
+
+        .cta-secondary:hover {
+            background-color: #388E3C; /* Πιο σκούρο πράσινο */
+        }
+
+        /* HERO SECTION (ΑΡΧΙΚΗ ΣΕΛΙΔΑ) */
+        .hero-section {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            height: 70vh; /* Ύψος για εντυπωσιακή εμφάνιση */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            /* Προσοχή: Εδώ χρειάζεται μια εικόνα φόντου με σκύλο! */
+            background-image: linear-gradient(rgba(30, 136, 229, 0.8), rgba(30, 136, 229, 0.8)), url('placeholder-dog-image.jpg'); /* Αντικαταστήστε με δική σας εικόνα */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-section h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .hero-section p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        /* CONTENT SECTIONS */
+        .content-section {
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .light-bg {
+            background-color: var(--color-light-bg);
+        }
+
+        .content-section h2 {
+            font-size: 2.2em;
+            color: var(--color-primary);
+            margin-bottom: 40px;
+        }
+
+        /* ΠΑΚΕΤΑ */
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .package-card {
+            background-color: var(--color-white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .package-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .package-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 15px;
+        }
+
+        .package-card.featured {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border: 3px solid var(--color-secondary);
+        }
+
+        .package-card.featured h3 {
+            color: var(--color-white);
+        }
+
+        .package-card.featured .cta-primary {
+            background-color: var(--color-secondary);
+            border-color: var(--color-secondary);
+        }
+
+        .package-card.featured .cta-primary:hover {
+            background-color: #388E3C;
+        }
+
+        /* ΠΛΗΡΟΦΟΡΙΕΣ */
+        .info-card {
+            background-color: var(--color-white);
+            padding: 25px;
+            border-left: 5px solid var(--color-secondary);
+            border-radius: 5px;
+            text-align: left;
+            margin: 20px auto;
+            max-width: 600px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 5px;
+        }
+
+        /* ΦΟΡΜΑ ΕΠΙΚΟΙΝΩΝΙΑΣ */
+        .contact-section {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            color: var(--color-white);
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: 30px auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form input[type="tel"],
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+        }
+
+        .contact-form button[type="submit"] {
+            cursor: pointer;
+            border: none;
+            /* Χρησιμοποιούμε το Πράσινο (secondary) για το button της φόρμας για αντίθεση */
+            background-color: var(--color-secondary);
+            color: var(--color-white);
+            padding: 15px;
+            font-size: 1.1em;
+            font-weight: 700;
+        }
+
+        .contact-form button[type="submit"]:hover {
+            background-color: #388E3C;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--color-text);
+            color: var(--color-light-bg);
+            text-align: center;
+            padding: 20px 5%;
+            font-size: 0.9em;
+        }
+
+        /* RESPONSIVENESS (Για κινητά) */
+        @media (max-width: 768px) {
+            .main-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .main-header nav ul {
+                flex-direction: column;
+                margin-top: 10px;
+            }
+
+            .main-header nav li {
+                margin: 5px 0;
+            }
+
+            .hero-section {
+                height: 50vh;
+            }
+
+            .hero-section h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="logo">[ΤΟ ΟΝΟΜΑ ΣΑΣ] TRAINING</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Αρχική Σελίδα</a></li>
+                <li><a href="#about">Σχετικά με Εμάς</a></li>
+                <li><a href="#info">Πληροφορίες που δεν ήξερες</a></li>
+                <li><a href="#packages">Πακέτα</a></li>
+                <li><a href="#contact" class="cta-button">Επικοινωνία</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <h1>Εκπαιδευτής Σκύλων Εμπιστοσύνης</h1>
+            <p>Αλλάξτε τη ζωή σας και του τετράποδου φίλου σας. Μαζί χτίζουμε μια αρμονική σχέση.</p>
+            <a href="#packages" class="cta-primary">Δείτε τα Πακέτα Εκπαίδευσης</a>
+        </div>
+    </section>
+
+    <section id="about" class="content-section light-bg">
+        <h2>Σχετικά με Εμάς</h2>
+        <div class="container">
+            <p>Η φιλοσοφία μας βασίζεται στη θετική ενίσχυση και τον σεβασμό προς το ζώο. Με πολυετή εμπειρία, στόχος μας είναι να σας παρέχουμε τα εργαλεία για μια ευτυχισμένη συνύπαρξη.</p>
+            <ul>
+                <li>✅ Θετική Ενίσχυση</li>
+                <li>✅ Πιστοποιημένη Εκπαίδευση</li>
+                <li>✅ Εξατομικευμένα Προγράμματα</li>
+            </ul>
+            </div>
+    </section>
+
+    <section id="info" class="content-section">
+        <h2>Πληροφορίες που δεν ήξερες</h2>
+        <div class="container">
+            <div class="info-card">
+                <h3>Ο μύθος του "Κυρίαρχου"</h3>
+                <p>Πολλές μέθοδοι βασίζονται σε παλιά μοντέλα. Η σύγχρονη εκπαίδευση εστιάζει στη συνεργασία, όχι στην κυριαρχία.</p>
+            </div>
+            <div class="info-card">
+                <h3>Η γλώσσα του σώματος</h3>
+                <p>Μαθαίνουμε να διαβάζουμε τα λεπτά σήματα του σκύλου σας για να καταλάβουμε τις πραγματικές του ανάγκες και το άγχος του.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="packages" class="content-section light-bg">
+        <h2>Τα Πακέτα Εκπαίδευσης</h2>
+        <div class="container package-grid">
+            <div class="package-card">
+                <h3>Βασική Υπακοή</h3>
+                <p>6 συνεδρίες. Εκμάθηση βασικών εντολών (κάτσε, μείνε, έλα).</p>
+                <a href="#contact" class="cta-secondary">Ενδιαφέρομαι</a>
+            </div>
+            <div class="package-card featured">
+                <h3>Εκπαίδευση Κουταβιού</h3>
+                <p>4 συνεδρίες. Κοινωνικοποίηση, τουαλέτα, δάγκωμα. Το καλύτερο ξεκίνημα!</p>
+                <a href="#contact" class="cta-primary">Κλείσε Ραντεβού</a>
+            </div>
+            <div class="package-card">
+                <h3>Τροποποίηση Συμπεριφοράς</h3>
+                <p>Προσαρμοσμένο πρόγραμμα. Για θέματα άγχους, επιθετικότητας ή φόβων.</p>
+                <a href="#contact" class="cta-secondary">Ενδιαφέρομαι</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2>Φόρμα Επικοινωνίας</h2>
+        <p>Συμπληρώστε τα στοιχεία σας και θα επικοινωνήσουμε άμεσα μαζί σας.</p>
+        
+        <form action="" method="POST" class="contact-form">
+            <input type="text" name="name" placeholder="Το Όνομά Σας" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="tel" name="phone" placeholder="Κινητό Τηλέφωνο (Προαιρετικό)">
+            <textarea name="message" placeholder="Περιγράψτε τον σκύλο σας και το πρόβλημα (π.χ. φυλή, ηλικία, τι θέλετε να μάθει)" rows="5" required></textarea>
+            <button type="submit" class="cta-primary">Αποστολή Μηνύματος</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 [ΤΟ ΟΝΟΜΑ ΣΑΣ] Dog Training. Με αγάπη για τον καλύτερο σας φίλο.</p>
+    </footer>
+
+</body>
+</html>

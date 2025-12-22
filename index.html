@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Precision Dog Training | Ακρίβεια. Πειθαρχία. Αποτέλεσμα.</title>
+    <title>Precision Training | Professional K9 Services</title>
     <style>
         /* --- GENERAL STYLES --- */
+        :root {
+            --primary-gold: #c5a059;
+            --dark-bg: #121212;
+            --section-bg: #1e1e1e;
+            --text-light: #f4f4f4;
+            --text-gray: #b0b0b0;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #121212; /* Dark Theme Background */
-            color: #e0e0e0;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
             line-height: 1.6;
-        }
-
-        /* --- COLORS --- */
-        :root {
-            --primary-gold: #c5a059; /* Luxury Gold */
-            --dark-bg: #121212;
-            --section-bg: #1e1e1e;
-            --text-light: #f4f4f4;
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
@@ -41,7 +41,7 @@
 
         .logo {
             font-size: 1.5rem;
-            font-weight: 700;
+            font-weight: 800;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: var(--primary-gold);
@@ -49,64 +49,74 @@
 
         nav a {
             color: #fff;
-            margin-left: 20px;
-            font-size: 0.9rem;
+            margin-left: 15px;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         nav a:hover { color: var(--primary-gold); }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            height: 80vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+        /* --- HERO CAROUSEL --- */
+        .carousel-container {
+            position: relative;
+            height: 85vh; /* Ύψος κεντρικού μέρους */
+            overflow: hidden;
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
             background-size: cover;
             background-position: center;
+        }
+
+        .carousel-slide.active { opacity: 1; }
+
+        /* Overlay text on images */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Σκοτεινό φίλτρο */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 20px;
+            z-index: 10;
         }
 
-        .hero h1 {
+        .hero-overlay h1 {
             font-size: 3.5rem;
-            margin-bottom: 10px;
-            color: #fff;
             text-transform: uppercase;
+            margin: 0;
+            border-bottom: 3px solid var(--primary-gold);
+            padding-bottom: 10px;
         }
 
-        .hero p {
-            font-size: 1.5rem;
+        .hero-overlay p {
+            font-size: 1.2rem;
+            margin-top: 20px;
             color: var(--primary-gold);
-            margin-bottom: 40px;
+            letter-spacing: 1px;
         }
 
-        .cta-btn {
-            background-color: var(--primary-gold);
-            color: #000;
-            padding: 15px 40px;
-            font-weight: bold;
-            text-transform: uppercase;
-            border-radius: 4px;
-            border: 2px solid var(--primary-gold);
-        }
-
-        .cta-btn:hover {
-            background-color: transparent;
-            color: var(--primary-gold);
-        }
-
-        /* --- SECTIONS COMMON --- */
+        /* --- SECTIONS --- */
         section {
             padding: 80px 10%;
             border-bottom: 1px solid #333;
         }
 
         h2 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             text-transform: uppercase;
             margin-bottom: 40px;
             border-left: 5px solid var(--primary-gold);
@@ -114,7 +124,7 @@
             color: #fff;
         }
 
-        /* --- GRID LAYOUT --- */
+        /* --- GRID SYSTEM --- */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -125,18 +135,26 @@
             background-color: var(--section-bg);
             padding: 30px;
             border: 1px solid #333;
-            border-radius: 5px;
+            border-radius: 4px;
         }
 
-        .card h3 { color: var(--primary-gold); margin-top: 0; }
+        /* --- FUN FACTS --- */
+        .fact-card {
+            text-align: center;
+            border: 1px solid var(--primary-gold);
+        }
+        .fact-number {
+            font-size: 3rem;
+            color: var(--primary-gold);
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
 
-        /* --- PHILOSOPHY --- */
-        .bio-text p { margin-bottom: 20px; font-size: 1.1rem; }
-
-        /* --- VIDEO PLACEHOLDERS --- */
+        /* --- VIDEO BOX --- */
         .video-box {
             width: 100%;
-            height: 200px;
+            height: 250px;
             background-color: #000;
             display: flex;
             align-items: center;
@@ -144,38 +162,49 @@
             color: #555;
             margin-bottom: 15px;
             border: 1px solid #444;
+            position: relative;
+        }
+        .play-icon { font-size: 30px; color: var(--primary-gold); }
+
+        /* --- ARTICLES (READ MORE TOGGLE) --- */
+        .article-card h3 { color: var(--primary-gold); margin-top: 0; }
+        
+        .full-content {
+            display: none; /* Κρυμμένο αρχικά */
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #444;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            text-align: justify;
         }
 
-        /* --- ARTICLES (AGITATION) --- */
-        .article-card {
-            border-left: 3px solid var(--primary-gold);
-            transition: transform 0.2s;
-        }
-        .article-card:hover { transform: translateY(-5px); }
-        .read-more {
-            display: inline-block;
-            margin-top: 15px;
+        .read-toggle-btn {
+            background: none;
+            border: none;
             color: var(--primary-gold);
+            cursor: pointer;
             font-weight: bold;
-            border-bottom: 1px solid var(--primary-gold);
+            padding: 10px 0;
+            text-transform: uppercase;
+            font-size: 0.8rem;
         }
+
+        .read-toggle-btn:hover { text-decoration: underline; }
 
         /* --- FORM --- */
         input, textarea {
             width: 100%;
             padding: 15px;
             margin-bottom: 15px;
-            background-color: #000;
+            background-color: #0d0d0d;
             border: 1px solid #444;
             color: #fff;
-            box-sizing: border-box; /* Fix padding issues */
+            box-sizing: border-box;
             font-family: inherit;
         }
 
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary-gold);
-        }
+        input:focus, textarea:focus { outline: none; border-color: var(--primary-gold); }
 
         button[type="submit"] {
             width: 100%;
@@ -185,6 +214,7 @@
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
+            color: #000;
         }
 
         /* --- FOOTER --- */
@@ -196,146 +226,223 @@
             color: #777;
         }
 
-        /* --- MOBILE RESPONSIVE --- */
+        /* Social Icons (Simple text for now) */
+        .social-links a {
+            margin: 0 10px;
+            color: var(--primary-gold);
+            font-weight: bold;
+        }
+
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            header { flex-direction: column; }
-            nav { margin-top: 15px; }
-            nav a { margin: 0 10px; }
+            header { flex-direction: column; gap: 15px; }
+            .hero-overlay h1 { font-size: 2rem; }
+            nav { display: flex; flex-wrap: wrap; justify-content: center; }
+            nav a { margin: 5px 10px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">PRECISION DOG TRAINING</div>
+        <div class="logo">PRECISION TRAINING</div>
         <nav>
+            <a href="#about">Ποιοι Ειμαστε</a>
             <a href="#philosophy">Φιλοσοφια</a>
-            <a href="#results">Αποτελεσματα</a>
+            <a href="#facts">Fun Facts</a>
+            <a href="#videos">Videos</a>
             <a href="#articles">Blog</a>
             <a href="#contact">Επικοινωνια</a>
         </nav>
     </header>
 
-    <div class="hero">
-        <h1>Ακρίβεια. Πειθαρχία. Αποτέλεσμα.</h1>
-        <p>Δεν προσπαθούμε. Διορθώνουμε.</p>
-        <a href="#contact" class="cta-btn">Ξεκινηστε εδω</a>
+    <div class="carousel-container">
+        <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');"></div>
+        <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');"></div>
+        <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1625316708582-7c38734c3121?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');"></div>
+
+        <div class="hero-overlay">
+            <h1>Precision Training</h1>
+            <p>Ακρίβεια. Πειθαρχία. Αποτέλεσμα.</p>
+        </div>
     </div>
 
-    <section id="philosophy">
-        <h2>Η Φιλοσοφία & Ο Εκπαιδευτής</h2>
+    <section id="about">
+        <h2>Ποιοι Είμαστε</h2>
         <div class="grid">
             <div class="bio-text">
-                <h3>Ποιοι Είμαστε</h3>
-                <p>Στην <strong>Precision Dog Training</strong> δεν πιστεύουμε στα ημίμετρα. Η εκπαίδευση δεν είναι απλώς κόλπα για το σπίτι. Είναι τρόπος ζωής.</p>
-                <p>Στόχος μας είναι η λειτουργική υπακοή σε πραγματικές συνθήκες. Δεν μας αρκεί να κάθεται ο σκύλος στην κουζίνα. Θέλουμε να σας ακούει στο πάρκο, στον δρόμο, παντού.</p>
+                <p>Στην <strong>Precision Training</strong>, δεν πιστεύουμε στις εύκολες λύσεις, πιστεύουμε στις σωστές λύσεις. Με πολυετή εμπειρία στον χώρο της συμπεριφοράς σκύλων, ειδικευόμαστε στη δημιουργία αρμονικών σχέσεων μεταξύ ιδιοκτήτη και σκύλου.</p>
+                <p>Δεν είμαστε εδώ για να σας μάθουμε απλά εντολές. Είμαστε εδώ για να σας μάθουμε πώς να επικοινωνείτε, πώς να ηγείστε και πώς να κερδίσετε τον σεβασμό του σκύλου σας.</p>
             </div>
             <div class="bio-text">
-                <h3>Η Μέθοδος</h3>
-                <p>Χρησιμοποιούμε ισορροπημένη εκπαίδευση βασισμένη στην ψυχολογία του σκύλου. Δημιουργούμε καθαρή επικοινωνία, θέτοντας όρια που ο σκύλος καταλαβαίνει και σέβεται.</p>
-                <p>Δεν διαχειριζόμαστε απλά τα συμπτώματα. Χτυπάμε τη ρίζα του προβλήματος.</p>
+                <p>Έχουμε αναλάβει τις πιο δύσκολες περιπτώσεις: σκύλους με επιθετικότητα, φοβίες και νευρώσεις. Εκεί που οι άλλοι βλέπουν αδιέξοδο, εμείς βλέπουμε μια ευκαιρία για μεταμόρφωση.</p>
             </div>
         </div>
     </section>
 
-    <section id="results">
-        <h2>Αποδείξεις, Όχι Θεωρίες</h2>
-        <p style="margin-bottom:30px; font-style:italic; color:#aaa;">Δείτε τα αποτελέσματα της δουλειάς μας. Εμείς δεν δείχνουμε το "πώς" - δείχνουμε το αποτέλεσμα.</p>
-        
+    <section id="philosophy" style="background-color: var(--section-bg);">
+        <h2>Η Φιλοσοφία Μας</h2>
+        <p>Η εκπαίδευση δεν είναι παιχνίδι με λιχουδιές. Είναι τρόπος ζωής.</p>
+        <div class="grid" style="margin-top:30px;">
+            <div class="card" style="background-color: var(--dark-bg);">
+                <h3>Ισορροπία</h3>
+                <p>Χρησιμοποιούμε ένα ισορροπημένο σύστημα που επιβραβεύει το σωστό και διορθώνει δίκαια το λάθος. Χωρίς σαφή όρια, δεν υπάρχει ελευθερία.</p>
+            </div>
+            <div class="card" style="background-color: var(--dark-bg);">
+                <h3>Πραγματικές Συνθήκες</h3>
+                <p>Ο σκύλος πρέπει να υπακούει στον δρόμο, στην καφετέρια, στο πάρκο. Όχι μόνο στην ησυχία του σπιτιού.</p>
+            </div>
+            <div class="card" style="background-color: var(--dark-bg);">
+                <h3>Ψυχολογία</h3>
+                <p>Δεν αντιμετωπίζουμε τον σκύλο σαν άνθρωπο. Τον σεβόμαστε για αυτό που είναι: ένα ζώο με συγκεκριμένες ανάγκες και ένστικτα.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="facts">
+        <h2>Fun Facts</h2>
+        <p style="margin-bottom:30px; color:#aaa;">Μικρές αλήθειες που ίσως δεν γνωρίζατε.</p>
+        <div class="grid">
+            <div class="card fact-card">
+                <span class="fact-number">15</span>
+                <p>Λεπτά νοητικής άσκησης κουράζουν τον σκύλο όσο 1 ώρα τρέξιμο.</p>
+            </div>
+            <div class="card fact-card">
+                <span class="fact-number">90%</span>
+                <p>Των προβλημάτων συμπεριφοράς οφείλονται σε έλλειψη ορίων, όχι σε "κακό χαρακτήρα".</p>
+            </div>
+            <div class="card fact-card">
+                <span class="fact-number">3</span>
+                <p>Δευτερόλεπτα. Τόσο χρόνο έχετε για να επιβραβεύσετε ή να διορθώσετε μια πράξη.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="videos">
+        <h2>Videos (Αποτελέσματα)</h2>
+        <p style="margin-bottom:30px; color:#aaa;">Μιλάμε με πράξεις. Δείτε τα αποτελέσματα της δουλειάς μας.</p>
         <div class="grid">
             <div class="card">
-                <div class="video-box">[VIDEO PLACEHOLDER]</div>
-                <h3>Off-Leash Control</h3>
-                <p>Πλήρης έλεγχος χωρίς λουρί σε κέντρο πόλης με έντονους περισπασμούς.</p>
+                <div class="video-box"><span class="play-icon">▶</span></div>
+                <h3>Off-Leash Walking</h3>
+                <p>Περπάτημα δίπλα χωρίς λουρί σε κέντρο πόλης.</p>
             </div>
-            
             <div class="card">
-                <div class="video-box">[VIDEO PLACEHOLDER]</div>
-                <h3>Διόρθωση Επιθετικότητας</h3>
-                <p>Σκύλος με ιστορικό επιθετικότητας παραμένει ήρεμος δίπλα σε άλλους σκύλους.</p>
+                <div class="video-box"><span class="play-icon">▶</span></div>
+                <h3>Place Command</h3>
+                <p>Απόλυτη ακινησία και ηρεμία ενώ υπάρχουν περισπασμοί.</p>
             </div>
-
             <div class="card">
-                <div class="video-box">[VIDEO PLACEHOLDER]</div>
-                <h3>Άψογη Επαναφορά</h3>
-                <p>Η εντολή που σώζει ζωές. Άμεση ανταπόκριση με την πρώτη φωνή.</p>
+                <div class="video-box"><span class="play-icon">▶</span></div>
+                <h3>Διόρθωση Αντίδρασης</h3>
+                <p>Σκύλος που γαύγιζε σε άλλους σκύλους, τώρα περνάει αδιάφορος.</p>
             </div>
         </div>
     </section>
 
-    <section id="services" style="background-color: #1a1a1a;">
-        <h2>Υπηρεσίες</h2>
-        <div class="grid">
-            <div class="card" style="border-top: 3px solid var(--primary-gold);">
-                <h3>Board & Train</h3>
-                <p>Εσώκλειστη εκπαίδευση για μέγιστα και γρήγορα αποτελέσματα. Ο σκύλος μένει μαζί μας και επιστρέφει άλλος σκύλος.</p>
-            </div>
-            <div class="card" style="border-top: 3px solid var(--primary-gold);">
-                <h3>Συμβουλευτική Συμπεριφοράς</h3>
-                <p>Εξειδικευμένη αξιολόγηση και πλάνο διόρθωσης για επιθετικότητα, φοβίες και άγχος αποχωρισμού.</p>
-            </div>
-            <div class="card" style="border-top: 3px solid var(--primary-gold);">
-                <h3>Puppy Foundation</h3>
-                <p>Χτίζοντας σωστές βάσεις από την πρώτη μέρα. Τουαλέτα, κοινωνικοποίηση και βασικοί κανόνες.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="articles">
+    <section id="articles" style="background-color: var(--section-bg);">
         <h2>Τροφή για Σκέψη</h2>
-        <p style="margin-bottom:30px; color:#aaa;">Προβληματισμοί για το σύγχρονο ιδιοκτήτη σκύλου.</p>
-        
         <div class="grid">
+            
             <article class="card article-card">
-                <h3>Γιατί η "αγάπη" καταστρέφει τον σκύλο σας;</h3>
-                <p>Πολλοί ιδιοκτήτες συγχέουν την αγάπη με την έλλειψη ορίων. Διαβάστε γιατί το υπερβολικό χάδι δημιουργεί ανασφάλεια.</p>
-                <a href="#" class="read-more">ΔΙΑΒΑΣΤΕ ΠΕΡΙΣΣΟΤΕΡΑ ></a>
+                <h3>Γιατί η "αγάπη" καταστρέφει;</h3>
+                <p>Πολλοί ιδιοκτήτες συγχέουν την αγάπη με την έλλειψη ορίων. Πιστεύουν ότι αγαπώ σημαίνει "δεν λέω ποτέ όχι".</p>
+                
+                <button onclick="toggleArticle(this)" class="read-toggle-btn">ΔΙΑΒΑΣΤΕ ΤΟ ΑΡΘΡΟ ▼</button>
+                
+                <div class="full-content">
+                    <p>Στην πραγματικότητα, ένας σκύλος χωρίς όρια είναι ένας σκύλος γεμάτος άγχος. Όταν δεν αναλαμβάνετε εσείς τον ρόλο του ηγέτη, ο σκύλος αναγκάζεται να τον αναλάβει εκείνος.</p>
+                    <p>Αυτό δημιουργεί τεράστια ψυχολογική πίεση στο ζώο. Η υπερβολική στοργή σε στιγμές που ο σκύλος φοβάται ή είναι νευρικός, απλά επιβραβεύει τον φόβο και τη νευρικότητα.</p>
+                    <p>Η πραγματική αγάπη είναι να δώσετε στον σκύλο σας δομή, κανόνες και ασφάλεια. Μόνο τότε μπορεί να ηρεμήσει πραγματικά.</p>
+                </div>
             </article>
 
             <article class="card article-card">
                 <h3>Ο μύθος της "κακιάς στιγμής"</h3>
-                <p>Γιατί δεν υπάρχει "τυχαίο" δάγκωμα; Αναλύουμε τα προειδοποιητικά σημάδια που αγνοήσατε μήνες πριν το συμβάν.</p>
-                <a href="#" class="read-more">ΔΙΑΒΑΣΤΕ ΠΕΡΙΣΣΟΤΕΡΑ ></a>
+                <p>Συχνά ακούμε: "Δεν το είχε ξανακάνει, ήταν μια κακιά στιγμή". Στην εκπαίδευση σκύλων, δεν υπάρχουν τυχαία γεγονότα.</p>
+                
+                <button onclick="toggleArticle(this)" class="read-toggle-btn">ΔΙΑΒΑΣΤΕ ΤΟ ΑΡΘΡΟ ▼</button>
+                
+                <div class="full-content">
+                    <p>Ένα δάγκωμα ή μια επίθεση είναι σχεδόν πάντα το τελικό στάδιο μιας μακράς σειράς προειδοποιήσεων που αγνοήθηκαν. Ο σκύλος σας "μιλούσε" για μήνες.</p>
+                    <p>Το πάγωμα του σώματος, το έντονο κοίταγμα, το σήκωμα του χειλίου, η ακαμψία όταν τον χαϊδεύετε. Αυτά είναι τα σημάδια.</p>
+                    <p>Αν δεν μάθετε να διαβάζετε τη γλώσσα του σώματος του σκύλου σας και να σέβεστε τον χώρο του, η "κακιά στιγμή" είναι απλώς θέμα χρόνου. Στην Precision Training σας μαθαίνουμε να βλέπετε αυτά τα σημάδια πριν είναι αργά.</p>
+                </div>
             </article>
 
             <article class="card article-card">
-                <h3>Γιατί ο σκύλος σας δεν σας σέβεται;</h3>
-                <p>Αν ο σκύλος τραβάει στη βόλτα, δεν είναι θέμα εξοπλισμού. Είναι θέμα σχέσης και ηγεσίας.</p>
-                <a href="#" class="read-more">ΔΙΑΒΑΣΤΕ ΠΕΡΙΣΣΟΤΕΡΑ ></a>
+                <h3>Σεβασμός ή Φόβος;</h3>
+                <p>Πολλοί διστάζουν να διορθώσουν τον σκύλο τους γιατί φοβούνται ότι θα τους φοβάται. Αυτό είναι ένα τεράστιο λάθος.</p>
+                
+                <button onclick="toggleArticle(this)" class="read-toggle-btn">ΔΙΑΒΑΣΤΕ ΤΟ ΑΡΘΡΟ ▼</button>
+                
+                <div class="full-content">
+                    <p>Υπάρχει τεράστια διαφορά ανάμεσα στον σεβασμό και τον φόβο. Ο σεβασμός κερδίζεται μέσω της συνέπειας, της ηρεμίας και της δικαιοσύνης.</p>
+                    <p>Όταν βάζετε ένα όριο (π.χ. "μην πηδάς πάνω μου"), και το τηρείτε κάθε φορά, ο σκύλος μαθαίνει να σας σέβεται. Όταν του φωνάζετε τη μία μέρα και την άλλη τον αφήνετε να το κάνει, τότε δημιουργείτε σύγχυση.</p>
+                    <p>Ένας σκύλος που σέβεται τον ιδιοκτήτη του νιώθει ασφαλής δίπλα του. Ένας σκύλος που δεν έχει όρια, νιώθει ότι πρέπει να προστατεύσει ο ίδιος τον εαυτό του.</p>
+                </div>
             </article>
+
         </div>
     </section>
 
     <section id="contact">
-        <h2>Επικοινωνία</h2>
+        <h2>Επικοινωνήστε Μαζί Μας</h2>
         <div class="grid">
             <div>
-                <p style="font-size:1.2rem; margin-bottom:20px;">Είστε έτοιμοι να αλλάξετε τη ζωή σας με τον σκύλο σας;</p>
+                <p style="font-size:1.2rem; margin-bottom:20px;">Είστε έτοιμοι να αλλάξετε τη σχέση σας με τον σκύλο σας;</p>
                 <p><strong>Τηλέφωνο:</strong> 69XX XXX XXX</p>
-                <p><strong>Email:</strong> info@precisiondogtraining.gr</p>
+                <p><strong>Email:</strong> info@precisiontraining.gr</p>
                 <br>
-                <h3>Follow Us</h3>
-                <div style="display:flex; gap:15px;">
-                    <a href="#" style="color:var(--primary-gold);">Facebook Page</a>
-                    <a href="#" style="color:var(--primary-gold);">Instagram</a>
-                    <a href="#" style="color:var(--primary-gold);">TikTok</a>
+                <h3>Social Media</h3>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank">Facebook</a> |
+                    <a href="https://instagram.com" target="_blank">Instagram</a> |
+                    <a href="https://tiktok.com" target="_blank">TikTok</a>
                 </div>
             </div>
             
-            <form action="mailto:email@example.com" method="post" enctype="text/plain">
+            <form action="mailto:your-email@example.com" method="post" enctype="text/plain">
                 <input type="text" name="name" placeholder="Το Όνομά σας" required>
                 <input type="text" name="dog_info" placeholder="Ράτσα & Ηλικία Σκύλου" required>
                 <input type="tel" name="phone" placeholder="Τηλέφωνο" required>
-                <textarea name="problem" rows="5" placeholder="Ποιο είναι το κυριότερο πρόβλημα που αντιμετωπίζετε;" required></textarea>
-                <button type="submit">ΑΙΤΗΣΗ ΑΞΙΟΛΟΓΗΣΗΣ</button>
+                <textarea name="problem" rows="5" placeholder="Ποιο είναι το κυριότερο πρόβλημα;" required></textarea>
+                <button type="submit">ΑΠΟΣΤΟΛΗ ΜΗΝΥΜΑΤΟΣ</button>
             </form>
         </div>
     </section>
 
     <footer>
-        &copy; 2025 Precision Dog Training. All Rights Reserved.
+        &copy; 2025 Precision Training. All Rights Reserved.
     </footer>
+
+    <script>
+        // --- Carousel Logic ---
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Change slide every 4 seconds
+        setInterval(nextSlide, 4000);
+
+        // --- Article Toggle Logic ---
+        function toggleArticle(btn) {
+            const content = btn.nextElementSibling; // The div with class full-content
+            
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                btn.innerHTML = "ΔΙΑΒΑΣΤΕ ΤΟ ΑΡΘΡΟ ▼";
+            } else {
+                content.style.display = "block";
+                btn.innerHTML = "ΚΛΕΙΣΙΜΟ ΑΡΘΡΟΥ ▲";
+            }
+        }
+    </script>
 
 </body>
 </html>

@@ -39,7 +39,54 @@
             z-index: 1000;
         }
 
-        .logo {
+        /* --- CSS LOGO (NO IMAGE FILE NEEDED) --- */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Το σχέδιο του λογότυπου PT */
+        .css-logo-icon {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            /* Δημιουργία του βρόχου του 'P' με borders */
+            box-sizing: border-box;
+            border: 6px solid var(--primary-gold);
+            border-left: none; /* Αφήνουμε το αριστερό μέρος ανοιχτό για τον κορμό */
+            border-top-right-radius: 8px;
+            border-bottom-right-radius: 8px;
+            margin-left: 8px; /* Μετατόπιση για να χωρέσει ο κορμός */
+            height: 26px; /* Το ύψος του κύκλου του P */
+            top: 0;
+        }
+
+        /* Ο κύριος κάθετος κορμός (για P και T) */
+        .css-logo-icon::before {
+            content: '';
+            position: absolute;
+            left: -14px; /* Τοποθέτηση αριστερά από τον βρόχο */
+            top: -6px; /* Ευθυγράμμιση με την κορυφή */
+            width: 8px; /* Πάχος κορμού */
+            height: 40px; /* Συνολικό ύψος */
+            background-color: var(--primary-gold);
+        }
+
+        /* Η οριζόντια μπάρα του 'T' */
+        .css-logo-icon::after {
+            content: '';
+            position: absolute;
+            left: -18px; /* Ξεκινάει λίγο πιο αριστερά */
+            top: 12px; /* Τοποθέτηση κάτω από τον βρόχο του P */
+            width: 30px;
+            height: 6px;
+            background-color: var(--primary-gold);
+            z-index: -1; /* Το βάζουμε από πίσω για εφέ αλληλεπικάλυψης */
+        }
+
+
+        .logo-text {
             font-size: 1.5rem;
             font-weight: 800;
             text-transform: uppercase;
@@ -236,6 +283,7 @@
         /* RESPONSIVE */
         @media (max-width: 768px) {
             header { flex-direction: column; gap: 15px; }
+            .logo-container { flex-direction: column; text-align: center; }
             .hero-overlay h1 { font-size: 2rem; }
             nav { display: flex; flex-wrap: wrap; justify-content: center; }
             nav a { margin: 5px 10px; }
@@ -245,7 +293,11 @@
 <body>
 
     <header>
-        <div class="logo">PRECISION TRAINING</div>
+        <div class="logo-container">
+            <span class="logo-text">PRECISION TRAINING</span>
+            <div class="css-logo-icon" role="img" aria-label="PT Logo"></div>
+        </div>
+
         <nav>
             <a href="#about">Ποιοι Ειμαστε</a>
             <a href="#philosophy">Φιλοσοφια</a>
